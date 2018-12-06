@@ -1,0 +1,18 @@
+<prtg>
+{% for iface in result.response %}
+  <result>
+    <channel>
+      {{ iface.port }}
+    </channel>
+    <value>
+      {{ iface.rx_pwr }}
+    </value>
+    <float>1</float>
+    <LimitMode>1</LimitMode>
+    <LimitMinError>
+      {{ prtg_limit }}
+    </LimitMinError>
+    <CustomUnit>dBm</CustomUnit>
+  </result>
+{% endfor %}
+</prtg>
