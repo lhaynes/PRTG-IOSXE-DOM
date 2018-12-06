@@ -1,0 +1,9 @@
+Value PORT (\w+\/\d+\/\d+)
+Value TEMPERATURE (\S+)
+Value VOLTAGE (\S+)
+Value CURRENT (\S+)
+Value TX_PWR (\S+)
+Value RX_PWR (\S+)
+
+Start
+  ^${PORT}\s+${TEMPERATURE}\s+${VOLTAGE}\s+${CURRENT}\s+${TX_PWR}\s+${RX_PWR}\s+ -> Record
