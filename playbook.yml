@@ -1,0 +1,23 @@
+---
+- name: IOS-XE transceiver Rx
+  hosts: all
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: show interfaces transceiver
+      ntc_show_command:
+        connection: ssh
+        delay: 3
+        platform: "{{ platform }}"
+        command: "show interfaces transceiver"
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        template_dir: "templates/textfsm"
+      register: result
+    - name: post template to prtg
+      uri:
+        url: http://{{ prtg_host }}/{{ prtg_key }}
+        method: POST
+        body: "content={{ lookup('template', 'prtg.j2') }}"
+        status_code: 200
